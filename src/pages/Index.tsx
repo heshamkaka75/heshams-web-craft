@@ -11,35 +11,12 @@ import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
   useEffect(() => {
-    // Set page title
     document.title = "Hesham Elhag | Fullstack Web Developer";
-    
-    // Scroll to top on initial load
     window.scrollTo(0, 0);
-    
-    // Implement smooth scroll behavior for anchor links
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest('a[href^="#"]');
-      
-      if (anchor) {
-        e.preventDefault();
-        const targetId = anchor.getAttribute('href');
-        if (targetId && targetId.startsWith('#')) {
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      }
-    };
-    
-    document.addEventListener('click', handleAnchorClick);
-    return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
   
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero />
       <About />
