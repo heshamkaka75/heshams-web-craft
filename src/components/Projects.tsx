@@ -11,14 +11,18 @@ import {
   CardTitle 
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState("all");
+  const { t, language } = useLanguage();
   
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-featured e-commerce platform built with React, Node.js, and MongoDB.",
+      title: language === 'en' ? "E-Commerce Platform" : "منصة تجارة إلكترونية",
+      description: language === 'en' 
+        ? "A full-featured e-commerce platform built with React, Node.js, and MongoDB."
+        : "منصة تجارة إلكترونية كاملة المميزات مبنية باستخدام React وNode.js وMongoDB.",
       image: "https://placehold.it/600x400/1A1F2C/FFFFFF?text=E-Commerce+App",
       tags: ["React", "Node.js", "MongoDB", "Express"],
       category: "fullstack",
@@ -26,8 +30,10 @@ const Projects = () => {
       demo: "#"
     },
     {
-      title: "Task Management App",
-      description: "A drag-and-drop task management application with user authentication.",
+      title: language === 'en' ? "Task Management App" : "تطبيق إدارة المهام",
+      description: language === 'en'
+        ? "A drag-and-drop task management application with user authentication."
+        : "تطبيق إدارة مهام بخاصية السحب والإفلات مع مصادقة المستخدم.",
       image: "https://placehold.it/600x400/1A1F2C/FFFFFF?text=Task+Management",
       tags: ["React", "Firebase", "Tailwind CSS"],
       category: "frontend",
@@ -35,8 +41,10 @@ const Projects = () => {
       demo: "#"
     },
     {
-      title: "Restaurant Booking System",
-      description: "A booking system for restaurants with real-time availability updates.",
+      title: language === 'en' ? "Restaurant Booking System" : "نظام حجز المطاعم",
+      description: language === 'en'
+        ? "A booking system for restaurants with real-time availability updates."
+        : "نظام حجز للمطاعم مع تحديثات التوافر في الوقت الفعلي.",
       image: "https://placehold.it/600x400/1A1F2C/FFFFFF?text=Booking+System",
       tags: ["Vue.js", "Node.js", "PostgreSQL"],
       category: "fullstack",
@@ -44,8 +52,10 @@ const Projects = () => {
       demo: "#"
     },
     {
-      title: "Weather Dashboard",
-      description: "A weather dashboard showcasing current and forecast weather data.",
+      title: language === 'en' ? "Weather Dashboard" : "لوحة معلومات الطقس",
+      description: language === 'en'
+        ? "A weather dashboard showcasing current and forecast weather data."
+        : "لوحة معلومات الطقس تعرض بيانات الطقس الحالية والمتوقعة.",
       image: "https://placehold.it/600x400/1A1F2C/FFFFFF?text=Weather+App",
       tags: ["JavaScript", "API Integration", "CSS3"],
       category: "frontend",
@@ -53,8 +63,10 @@ const Projects = () => {
       demo: "#"
     },
     {
-      title: "Blog API",
-      description: "A RESTful API for a blog platform with authentication and authorization.",
+      title: language === 'en' ? "Blog API" : "واجهة برمجة تطبيقات المدونة",
+      description: language === 'en'
+        ? "A RESTful API for a blog platform with authentication and authorization."
+        : "واجهة برمجة تطبيقات RESTful لمنصة مدونة مع المصادقة والتفويض.",
       image: "https://placehold.it/600x400/1A1F2C/FFFFFF?text=Blog+API",
       tags: ["Node.js", "Express", "MongoDB", "JWT"],
       category: "backend",
@@ -62,8 +74,10 @@ const Projects = () => {
       demo: "#"
     },
     {
-      title: "Real-time Chat Application",
-      description: "A chat application with real-time messaging and user presence.",
+      title: language === 'en' ? "Real-time Chat Application" : "تطبيق دردشة في الوقت الحقيقي",
+      description: language === 'en'
+        ? "A chat application with real-time messaging and user presence."
+        : "تطبيق دردشة مع رسائل في الوقت الحقيقي وتواجد المستخدم.",
       image: "https://placehold.it/600x400/1A1F2C/FFFFFF?text=Chat+App",
       tags: ["Socket.io", "React", "Node.js", "Redis"],
       category: "fullstack",
@@ -79,18 +93,18 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 bg-secondary/50">
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-center pb-3 mb-4">My Projects</h2>
+        <h2 className="section-title text-center pb-3 mb-4">{t('projects.title')}</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of the projects I've worked on. Each project represents different skills and technologies.
+          {t('projects.description')}
         </p>
         
         <Tabs defaultValue="all" className="mb-12" onValueChange={setActiveTab}>
           <div className="flex justify-center">
             <TabsList>
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="frontend">Frontend</TabsTrigger>
-              <TabsTrigger value="backend">Backend</TabsTrigger>
-              <TabsTrigger value="fullstack">Full Stack</TabsTrigger>
+              <TabsTrigger value="all">{t('projects.all')}</TabsTrigger>
+              <TabsTrigger value="frontend">{t('projects.frontend')}</TabsTrigger>
+              <TabsTrigger value="backend">{t('projects.backend')}</TabsTrigger>
+              <TabsTrigger value="fullstack">{t('projects.fullstack')}</TabsTrigger>
             </TabsList>
           </div>
           
@@ -132,6 +146,8 @@ const Projects = () => {
 };
 
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
+  const { t } = useLanguage();
+  
   return (
     <Card className="project-card overflow-hidden h-full">
       <div className="relative overflow-hidden h-48">
@@ -163,11 +179,11 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
       <CardFooter className="flex justify-between">
         <Button variant="outline" size="sm" className="gap-2">
           <Github size={16} />
-          Code
+          {t('projects.code')}
         </Button>
         <Button size="sm" className="gap-2">
           <ExternalLink size={16} />
-          Live Demo
+          {t('projects.demo')}
         </Button>
       </CardFooter>
     </Card>

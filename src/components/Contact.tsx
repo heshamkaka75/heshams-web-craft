@@ -6,9 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,8 +32,8 @@ const Contact = () => {
     setTimeout(() => {
       console.log('Form submitted:', formData);
       toast({
-        title: "Message sent successfully!",
-        description: "I'll get back to you as soon as possible.",
+        title: t('contact.form.success'),
+        description: t('contact.form.success.desc'),
       });
       
       // Reset form
@@ -48,19 +50,19 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6 text-teal-500" />,
-      title: "Email",
+      title: t('contact.email'),
       value: "hesham.elhag@example.com",
       link: "mailto:hesham.elhag@example.com"
     },
     {
       icon: <Phone className="w-6 h-6 text-teal-500" />,
-      title: "Phone",
+      title: t('contact.phone'),
       value: "+1 (234) 567-8901",
       link: "tel:+12345678901"
     },
     {
       icon: <MapPin className="w-6 h-6 text-teal-500" />,
-      title: "Location",
+      title: t('contact.location'),
       value: "San Francisco, CA",
       link: "#"
     }
@@ -69,14 +71,13 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-center pb-3 mb-16">Get In Touch</h2>
+        <h2 className="section-title text-center pb-3 mb-16">{t('contact.title')}</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+            <h3 className="text-2xl font-bold mb-6">{t('contact.info')}</h3>
             <p className="text-muted-foreground mb-8">
-              Feel free to reach out if you have any questions or if you'd like to work together.
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+              {t('contact.description')}
             </p>
             
             <div className="space-y-6 mb-8">
@@ -121,13 +122,13 @@ const Contact = () => {
           
           <Card>
             <CardContent className="p-6">
-              <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
+              <h3 className="text-2xl font-bold mb-6">{t('contact.form.title')}</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Input
                     type="text"
                     name="name"
-                    placeholder="Your Name"
+                    placeholder={t('contact.form.name')}
                     value={formData.name}
                     onChange={handleChange}
                     required
@@ -138,7 +139,7 @@ const Contact = () => {
                   <Input
                     type="email"
                     name="email"
-                    placeholder="Your Email"
+                    placeholder={t('contact.form.email')}
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -149,7 +150,7 @@ const Contact = () => {
                   <Input
                     type="text"
                     name="subject"
-                    placeholder="Subject"
+                    placeholder={t('contact.form.subject')}
                     value={formData.subject}
                     onChange={handleChange}
                     required
@@ -159,7 +160,7 @@ const Contact = () => {
                 <div>
                   <Textarea
                     name="message"
-                    placeholder="Your Message"
+                    placeholder={t('contact.form.message')}
                     value={formData.message}
                     onChange={handleChange}
                     required
@@ -174,12 +175,12 @@ const Contact = () => {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Sending...
+                      {t('contact.form.sending')}
                     </span>
                   ) : (
                     <span className="flex items-center">
                       <Send className="mr-2 h-4 w-4" />
-                      Send Message
+                      {t('contact.form.submit')}
                     </span>
                   )}
                 </Button>

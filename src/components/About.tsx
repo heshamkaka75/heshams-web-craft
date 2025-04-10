@@ -2,28 +2,31 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Code, Server, Columns, Cpu } from "lucide-react";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const About = () => {
+  const { t } = useLanguage();
+  
   const services = [
     {
       icon: <Code className="w-8 h-8 text-teal-500" />,
-      title: "Frontend Development",
-      description: "Creating responsive, pixel-perfect UIs with modern frameworks like React, Vue, and Angular."
+      title: t('service.frontend'),
+      description: t('service.frontend.desc')
     },
     {
       icon: <Server className="w-8 h-8 text-teal-500" />,
-      title: "Backend Development",
-      description: "Building robust server-side applications with Node.js, Express, and database technologies."
+      title: t('service.backend'),
+      description: t('service.backend.desc')
     },
     {
       icon: <Columns className="w-8 h-8 text-teal-500" />,
-      title: "Full Stack Solutions",
-      description: "End-to-end web application development from UI design to server implementation."
+      title: t('service.fullstack'),
+      description: t('service.fullstack.desc')
     },
     {
       icon: <Cpu className="w-8 h-8 text-teal-500" />,
-      title: "API Development",
-      description: "Designing and implementing RESTful APIs and GraphQL services for seamless data flow."
+      title: t('service.api'),
+      description: t('service.api.desc')
     }
   ];
 
@@ -32,15 +35,15 @@ const About = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="section-title pb-3">About Me</h2>
+            <h2 className="section-title pb-3">{t('about.title')}</h2>
             <p className="text-lg mb-6">
-              I'm Hesham Elhag, a passionate <span className="highlight">Fullstack Web Developer</span> with a strong foundation in both frontend and backend technologies.
+              {t('about.intro')} <span className="highlight">{t('about.fullstack')}</span> 
             </p>
             <p className="mb-6">
-              With expertise in modern JavaScript frameworks, responsive design, and server-side programming, I create seamless web experiences that combine functionality with aesthetics.
+              {t('about.description1')}
             </p>
             <p className="mb-6">
-              My approach to development focuses on writing clean, maintainable code while always keeping the end user's experience at the forefront of my work.
+              {t('about.description2')}
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
               {["JavaScript", "TypeScript", "React", "Node.js", "Express", "MongoDB", "SQL", "HTML/CSS", "Git"].map((skill) => (

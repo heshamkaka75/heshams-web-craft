@@ -2,10 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -21,11 +24,11 @@ const Navbar = () => {
   }, []);
   
   const navLinks = [
-    { title: "Home", href: "#home" },
-    { title: "About", href: "#about" },
-    { title: "Skills", href: "#skills" },
-    { title: "Projects", href: "#projects" },
-    { title: "Contact", href: "#contact" },
+    { title: t('nav.home'), href: "#home" },
+    { title: t('nav.about'), href: "#about" },
+    { title: t('nav.skills'), href: "#skills" },
+    { title: t('nav.projects'), href: "#projects" },
+    { title: t('nav.contact'), href: "#contact" },
   ];
   
   return (
@@ -51,6 +54,7 @@ const Navbar = () => {
               {link.title}
             </a>
           ))}
+          <LanguageSwitcher />
         </nav>
         
         {/* Mobile Menu Button */}
@@ -78,6 +82,7 @@ const Navbar = () => {
                 {link.title}
               </a>
             ))}
+            <LanguageSwitcher />
           </nav>
         </div>
       )}

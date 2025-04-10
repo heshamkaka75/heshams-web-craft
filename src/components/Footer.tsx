@@ -1,8 +1,10 @@
 
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
   
   return (
     <footer className="bg-navy-900 text-white py-12">
@@ -13,15 +15,15 @@ const Footer = () => {
               <span className="text-white">Hesham</span>
               <span className="text-teal-500">Elhag</span>
             </a>
-            <p className="mt-2 text-gray-400">Fullstack Web Developer</p>
+            <p className="mt-2 text-gray-400">{t('hero.title')}</p>
           </div>
           
           <div className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
-            <a href="#home" className="text-gray-400 hover:text-teal-500 transition-colors">Home</a>
-            <a href="#about" className="text-gray-400 hover:text-teal-500 transition-colors">About</a>
-            <a href="#skills" className="text-gray-400 hover:text-teal-500 transition-colors">Skills</a>
-            <a href="#projects" className="text-gray-400 hover:text-teal-500 transition-colors">Projects</a>
-            <a href="#contact" className="text-gray-400 hover:text-teal-500 transition-colors">Contact</a>
+            <a href="#home" className="text-gray-400 hover:text-teal-500 transition-colors">{t('nav.home')}</a>
+            <a href="#about" className="text-gray-400 hover:text-teal-500 transition-colors">{t('nav.about')}</a>
+            <a href="#skills" className="text-gray-400 hover:text-teal-500 transition-colors">{t('nav.skills')}</a>
+            <a href="#projects" className="text-gray-400 hover:text-teal-500 transition-colors">{t('nav.projects')}</a>
+            <a href="#contact" className="text-gray-400 hover:text-teal-500 transition-colors">{t('nav.contact')}</a>
           </div>
           
           <div className="flex gap-4">
@@ -49,8 +51,8 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {currentYear} Hesham Elhag. All rights reserved.</p>
-          <p className="mt-2 text-sm">Handcrafted with ❤️ using React, TypeScript, and Tailwind CSS</p>
+          <p>&copy; {currentYear} Hesham Elhag. {t('footer.rights')}</p>
+          <p className="mt-2 text-sm">{t('footer.made')}</p>
         </div>
       </div>
     </footer>
